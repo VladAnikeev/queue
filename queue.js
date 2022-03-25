@@ -70,7 +70,6 @@ class Queue {
                 }
             } else {
                 //успешно выполненная задача
-
                 this.outcomeMap.get(taskData).result = result;  //записываем результат
                 this.count--;                                   //уменьшаем очередь
             }
@@ -94,23 +93,6 @@ class Queue {
 }
 //----------------------------------------------------
 
-let taskData = [];
-for (let i = 0; i < 100; ++i) {
-    taskData.push(i);
-}
-const job = (data, callback) => {
-    //рандом ошибки
-    let result = 0;
-
-    let err = Math.floor(Math.random() * 2);
-    if (!err) {
-        result = 1;
-    }
-    setTimeout(callback, data * 10, err, result);
-    //callback(err, taskData) - функция
-    //taskData * 100 - интервал
-};
-
 
 /**
   *  асинхронная очередь  
@@ -124,5 +106,5 @@ const job = (data, callback) => {
   * falsе - продолжает запускать процесс если лимит ошибок достигнут 
   * true  - останавливает запуск процессов если лимит ошибок достигнут
 */
-const queue = new Queue(taskData, job, 10, 5, console.log, true);
 
+module.exports = Queue;
